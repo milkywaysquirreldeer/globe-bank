@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Document not found
-</body>
-</html>
+<?php   require_once('../../../private/initialize.php'); 
+        $pageTitle = 'Staff Menu';
+        require_once(SHARED_PATH . '/staff-header.php'); ?>
+
+<div id="content">
+</div>
+
+<?php   require_once(SHARED_PATH . '/staff-footer.php'); ?>
