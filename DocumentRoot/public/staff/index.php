@@ -3,6 +3,12 @@
         require_once(SHARED_PATH . '/staff-header.php'); ?>
 
 <div id="content">
+    <div id="main-menu">
+        <h2>Main Menu</h2>
+        <ul>
+            <li><a href="subjects/index.php">Subjects</a></li>
+        </ul>
+    </div>
 </div>
 
 <?php   require_once(SHARED_PATH . '/staff-footer.php'); ?>
