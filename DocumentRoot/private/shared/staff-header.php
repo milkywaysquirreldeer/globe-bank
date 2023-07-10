@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?php echo url_for('stylesheets/staff.css'); ?>" >
-    <title>GBI - <?php echo $pageTitle; ?></title>
+    <title>GBI - <?php echo htmlspecialchars($pageTitle); ?></title>
 </head>
 <body>
     <header>
