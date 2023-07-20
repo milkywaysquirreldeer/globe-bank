@@ -19,3 +19,8 @@ function error500() {
     header($_SERVER["SERVER_PROTOCOL"] . " 500 Internal Error");
     exit();
 }
+
+function redirect($url) {
+    header('Location: ' . WWW_ROOT . $url); // implies 302 Found
+    exit;
+}
