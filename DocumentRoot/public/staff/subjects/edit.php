@@ -2,7 +2,7 @@
 
 require_once('../../../private/initialize.php');
 
-// new.php
+// edit.php
 $testFromGet = $_GET['test'] ?? '';
 
 switch($testFromGet) {
@@ -13,19 +13,18 @@ switch($testFromGet) {
         error500();
         break;
     case 'redirect':
-      // header('Location: ' . WWW_ROOT . '/staff/subjects/index.php'); // implies "302 Found"
       redirect('/staff/subjects/index.php');
     default:
         break;
 }
 
-$pageTitle = 'Create Subject';
+$pageTitle = 'Edit Subject';
 include_once(SHARED_PATH . '/staff-header.php');
 ?>
 <div id="content">
     <a href="<?php echo WWW_ROOT . '/staff/subjects/index.php'; ?>" class="back-link">&laquo; Back to List</a>
-    <div class="subject new">
-        <h1>Create Subject</h1>
+    <div class="subject edit">
+        <h1>Edit Subject</h1>
         <form action="" method="post">
             <dl>
                 <dt>Menu Name</dt>
@@ -47,7 +46,7 @@ include_once(SHARED_PATH . '/staff-header.php');
                 </dd>
             </dl>
             <div id="operations">
-                <input type="submit" value="Create Subject">
+                <input type="submit" value="Edit Subject">
             </div>
         </form>
     </div>
