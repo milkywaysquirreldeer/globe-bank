@@ -3,18 +3,29 @@
 require_once('../../../private/initialize.php');
 
 // edit.php
-$testFromGet = $_GET['test'] ?? '';
 
-switch($testFromGet) {
-    case '404':
-        error404();
+switch($_SERVER['REQUEST_METHOD']) {
+    case 'POST':
+        // Handle form values POSTed by this page
+        $menuName   = $_POST['menuName']    ?? '';
+        $position   = $_POST['position']    ?? '';
+        $visible    = $_POST['visible']     ?? '';
+
+        echo 'Form parameters<br>';
+        echo 'Menu name: '  . $menuName . '<br>';
+        echo 'Position: '   . $position . '<br>';
+        echo 'Visible: '    . $visible  . '<br>';
         break;
-    case '500':
-        error500();
-        break;
-    case 'redirect':
-      redirect('/staff/subjects/index.php');
-    default:
+    case 'GET':
+        if (!isset($_GET['id'])) {
+        // Redirect to the form that provides the expected POST data
+            redirect(WWW_ROOT . '/staff/subjects/index.php');
+        } else {
+            $idFromGET  = $_GET['id'];
+            $menuName   = '';
+            $position   = '';
+            $visible    = '';
+        }
         break;
 }
 
@@ -25,10 +36,10 @@ include_once(SHARED_PATH . '/staff-header.php');
     <a href="<?php echo WWW_ROOT . '/staff/subjects/index.php'; ?>" class="back-link">&laquo; Back to List</a>
     <div class="subject edit">
         <h1>Edit Subject</h1>
-        <form action="" method="post">
+        <form action="<?php echo WWW_ROOT . '/staff/subjects/edit.php'; ?>" method="post">
             <dl>
                 <dt>Menu Name</dt>
-                <dd><input type="text" name="menu_name" value=""></dd>
+                <dd><input type="text" name="menuName" value="<?php echo $menuName; ?>"></dd>
             </dl>
             <dl>
                 <dt>Position</dt>
