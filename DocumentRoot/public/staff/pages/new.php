@@ -16,7 +16,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         }
 
     case 'POST':
-    // Process the values POSTed by the user via the form on this page
+        // Process the values POSTed by the user via the form on this page
         $menuName   = $_POST['menuName']    ?? '';
         $position   = $_POST['position']    ?? '';
         $visible    = $_POST['visible']     ?? '';

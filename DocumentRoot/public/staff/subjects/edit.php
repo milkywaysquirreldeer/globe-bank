@@ -8,7 +8,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     // Ensure that a subject ID has been supplied for editing
     case 'GET':
         if (!isset($_GET['id'])) {
-        // Redirect to the form that provides the expected POST data
+            // Redirect to the form that provides the expected POST data
             redirect(WWW_ROOT . '/staff/subjects/index.php');
         } else {
             $id         = $_GET['id'];
@@ -20,7 +20,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break; // continue to form display
 
     case 'POST':
-    // Process the values POSTed by the user via the form on this page
+        // Process the values POSTed by the user via the form on this page
         $menuName   = $_POST['menuName']    ?? '';
         $position   = $_POST['position']    ?? '';
         $visible    = $_POST['visible']     ?? '';
