@@ -2,18 +2,22 @@
 
 require_once('../../../private/initialize.php');
 
-// new.php - Staff form to create a new Subject
+// edit.php - Staff form to edit an existing Page
 
 switch ($_SERVER['REQUEST_METHOD']) {
+    // Ensure that a page ID has been supplied for editing
     case 'GET':
-        $menuName = '';
-        $visible = 1;
-
-        if (isset($_GET['id'])) {
-            redirect(WWW_ROOT . '/staff/subjects/index.php'); // This form is not meant to handle GET query strings
+        if (!isset($_GET['id'])) {
+        // Redirect to the form that provides the expected POST data
+            redirect(WWW_ROOT . '/staff/pages/index.php');
         } else {
-            break; // continue to form display
+            $id         = $_GET['id'];
+            $menuName   = $_GET['menuName'] ?? '';
+            $position   = $_GET['position'] ?? 1;
+            $visible    = $_GET['visible']  ?? 0;
         }
+
+        break; // continue to form display
 
     case 'POST':
     // Process the values POSTed by the user via the form on this page
@@ -28,19 +32,16 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 }
 
-$pageTitle = 'Create Subject';
+$pageTitle = 'Edit Page';
 
 include_once(SHARED_PATH . '/staff-header.php');
 ?>
 
 <div id="content">
-
-    <a href="<?php echo WWW_ROOT . '/staff/subjects/index.php'; ?>" class="back-link">&laquo; Back to List</a>
-
-    <div class="subject new">
-        <h1>Create Subject</h1>
-
-        <form action="<?php echo WWW_ROOT . '/staff/subjects/new.php'; ?>" method="post">
+    <a href="<?php echo WWW_ROOT . '/staff/pages/index.php'; ?>" class="back-link">&laquo; Back to List</a>
+    <div class="page edit">
+        <h1>Edit Page</h1>
+        <form action="<?php echo WWW_ROOT . '/staff/pages/edit.php?id=' . $id; ?>" method="post">
             <dl>
                 <dt>Menu Name</dt>
                 <dd><input type="text" name="menuName" value="<?php echo htmlspecialchars($menuName); ?>"></dd>
@@ -49,7 +50,7 @@ include_once(SHARED_PATH . '/staff-header.php');
                 <dt>Position</dt>
                 <dd>
                     <select name="position">
-                        <option value="1">1</option>
+                        <option value="<?php echo htmlspecialchars($position); ?>"><?php echo htmlspecialchars($position); ?></option>
                     </select>
                 </dd>
             </dl>
@@ -61,7 +62,7 @@ include_once(SHARED_PATH . '/staff-header.php');
                 </dd>
             </dl>
             <div id="operations">
-                <input type="submit" value="Create Subject">
+                <input type="submit" value="Edit Page">
             </div>
         </form>
     </div>

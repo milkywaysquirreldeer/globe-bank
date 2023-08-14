@@ -2,7 +2,7 @@
 
 require_once('../../../private/initialize.php');
 
-// new.php - Staff form to create a new Subject
+// new.php - Staff form to create a new Page
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
@@ -10,7 +10,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $visible = 1;
 
         if (isset($_GET['id'])) {
-            redirect(WWW_ROOT . '/staff/subjects/index.php'); // This form is not meant to handle GET query strings
+            redirect(WWW_ROOT . '/staff/pages/index.php'); // This form is not meant to handle GET query strings
         } else {
             break; // continue to form display
         }
@@ -28,19 +28,19 @@ switch ($_SERVER['REQUEST_METHOD']) {
         break;
 }
 
-$pageTitle = 'Create Subject';
+$pageTitle = 'Create Page';
 
 include_once(SHARED_PATH . '/staff-header.php');
 ?>
 
 <div id="content">
 
-    <a href="<?php echo WWW_ROOT . '/staff/subjects/index.php'; ?>" class="back-link">&laquo; Back to List</a>
+    <a href="<?php echo WWW_ROOT . '/staff/pages/index.php';?>" class="back-link">&laquo; Back to List</a>
+    
+    <div class="page new">
+        <h1>Create Page</h1>
 
-    <div class="subject new">
-        <h1>Create Subject</h1>
-
-        <form action="<?php echo WWW_ROOT . '/staff/subjects/new.php'; ?>" method="post">
+        <form action="<?php echo WWW_ROOT . '/staff/pages/new.php'; ?>" method="post">
             <dl>
                 <dt>Menu Name</dt>
                 <dd><input type="text" name="menuName" value="<?php echo htmlspecialchars($menuName); ?>"></dd>
@@ -61,7 +61,7 @@ include_once(SHARED_PATH . '/staff-header.php');
                 </dd>
             </dl>
             <div id="operations">
-                <input type="submit" value="Create Subject">
+                <input type="submit" value="Create Page">
             </div>
         </form>
     </div>
