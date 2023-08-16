@@ -1,11 +1,10 @@
-<?php   require_once('../../../private/initialize.php');
+<?php
 
-$pages = [
-    ['id' => 1, 'position' => 1, 'visible' => 1, 'menu_name' => 'Globe Bank'],
-    ['id' => 2, 'position' => 2, 'visible' => 0, 'menu_name' => 'History'],
-    ['id' => 3, 'position' => 3, 'visible' => 1, 'menu_name' => 'Leadership'],
-    ['id' => 4, 'position' => 4, 'visible' => 1, 'menu_name' => 'Contact Us'],
-];
+// pages/index.php
+require_once('../../../private/initialize.php');
+require_once(PRIVATE_PATH . '/db-queries.php');
+
+$page_set = select_all_pages();
 $pageTitle = 'Pages Menu';
 
 require_once(SHARED_PATH . '/staff-header.php');
@@ -22,6 +21,7 @@ require_once(SHARED_PATH . '/staff-header.php');
         <table class="list">
             <tr>
                 <th>ID</th>
+                <th>Subject ID</th>
                 <th>Position</th>
                 <th>Visible</th>
                 <th>Name</th>
@@ -30,9 +30,10 @@ require_once(SHARED_PATH . '/staff-header.php');
                 <th>&nbsp;</th>
             </tr>
 
-        <?php foreach($pages as $page) { ?>
+        <?php while ($page = mysqli_fetch_assoc($page_set)) { ?>
             <tr>
                 <td><?php echo htmlspecialchars($page['id']); ?></td>
+                <td><?php echo htmlspecialchars($page['subject_id']); ?></td>
                 <td><?php echo htmlspecialchars($page['position']); ?></td>
                 <td><?php echo $page['visible'] == '1' ? 'Y' : 'N'; ?></td>
                 <td><?php echo htmlspecialchars($page['menu_name']); ?></td>
@@ -53,4 +54,7 @@ require_once(SHARED_PATH . '/staff-header.php');
     </div>
 </div>
 
-<?php require_once(SHARED_PATH . '/staff-footer.php'); ?>
+<?php
+mysqli_free_result($page_set);
+require_once(SHARED_PATH . '/staff-footer.php');
+?>
