@@ -34,6 +34,21 @@ function select_subject_by_id($id)
     }
 }
 
+function insert_subject($menuName, $position, $visible)
+{
+    global $db;
+    $query = 'INSERT INTO subjects ';
+    $query .= '(menu_name, position, visible) ';
+    $query .= 'VALUES (';
+    $query .= "'" . $menuName . "',";
+    $query .= "'" . $position . "',";
+    $query .= "'" . $visible . "'";
+    $query .= ')';
+    $query_result = mysqli_query($db, $query);
+
+    return $query_result;
+}
+
 function select_all_pages()
 {
     global $db;

@@ -1,6 +1,7 @@
 <?php
 
 require_once('../../../private/initialize.php');
+require_once(PRIVATE_PATH . '/db-queries.php');
 
 // new.php - Staff form to create a new Subject
 
@@ -20,11 +21,20 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $menuName   = $_POST['menuName']    ?? '';
         $position   = $_POST['position']    ?? '';
         $visible    = $_POST['visible']     ?? '';
+        $result = insert_subject($menuName, $position, $visible);
+        switch ($result) {
+            case 1:
+                echo $result . '<br>';
+                $new_id = mysqli_insert_id($db);
+                redirect(WWW_ROOT . '/staff/subjects/show.php?id=' . $new_id);
+                break;
+            case 0: // INSERT failed
+                echo $result . '<br>';
+                echo 'Error Creating record<br>';
+                db_disconnect($db);
+                exit;
+        }
 
-        echo 'Form parameters<br>';
-        echo 'Menu name: '  . htmlspecialchars($menuName) . '<br>';
-        echo 'Position: '   . htmlspecialchars($position) . '<br>';
-        echo 'Visible: '    . htmlspecialchars($visible)  . '<br>';
         break;
 }
 
