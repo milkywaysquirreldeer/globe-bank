@@ -10,9 +10,27 @@ function select_all_subjects()
 
     try {
         $query_result = mysqli_query($db, $query);
-        return $query_result;
+        return $query_result; //returns a mysqli query result
     } catch(mysqli_sql_exception $e) {
         exit('SQL Error while retreiving list of Subjects');
+    }
+}
+
+function select_subject_by_id($id)
+{
+    global $db;
+    $query = 'SELECT * FROM subjects ';
+    $query .= "WHERE id='" . $id . "'";
+
+    try {
+        $query_result = mysqli_query($db, $query);
+        $subject = mysqli_fetch_assoc($query_result);
+
+        mysqli_free_result($query_result);
+        return $subject; // returns an assoc. array
+
+    } catch(mysqli_sql_exception $e) {
+        exit('SQL Error while retreiving Subject #' . htmlspecialchars($id));
     }
 }
 
@@ -24,7 +42,7 @@ function select_all_pages()
 
     try {
         $query_result = mysqli_query($db, $query);
-        return $query_result;
+        return $query_result; // returns a mysqli query result
     } catch(mysqli_sql_exception $e) {
         exit('SQL Error while retreiving list of Pages');
     }
