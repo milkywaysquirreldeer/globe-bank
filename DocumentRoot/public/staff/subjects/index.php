@@ -37,10 +37,7 @@ require_once(SHARED_PATH . '/staff-header.php');
                 <td><?php echo htmlspecialchars($subject['menu_name']); ?></td>
                 <td><a class="action" href="<?php echo url_for('/staff/subjects/show.php?id=' . htmlspecialchars(urlencode($subject['id']))); ?>">View</a></td>
                 <!-- <td><a class="action" href="<?php echo url_for('/staff/subjects/edit.php?id=' . htmlspecialchars(urlencode($subject['id']))); ?>">Edit</a></td> -->
-                <td><a class="action" href="<?php echo url_for('/staff/subjects/edit.php?id=' . htmlspecialchars(urlencode($subject['id'])) .
-                                    '&menuName='    . htmlspecialchars(urlencode($subject['menu_name'])) .
-                                    '&position='    . htmlspecialchars(urlencode($subject['position']))) .
-                                    '&visible='     . htmlspecialchars(urlencode($subject['visible'])); ?>">Edit</a>
+                <td><a class="action" href="<?php echo url_for('/staff/subjects/edit.php?id=' . htmlspecialchars(urlencode($subject['id']))); ?>">Edit</a>
                 </td>
                 <td><a class="action" href="<?php echo url_for('/staff/subjects/index.php'); ?>">Delete</a></td>
             </tr>

@@ -49,6 +49,20 @@ function insert_subject($menuName, $position, $visible)
     return $query_result;
 }
 
+function update_subject($subjectArray)
+{
+    global $db;
+    $query = 'UPDATE subjects ';
+    $query .= 'SET menu_name = ' . "'" . $subjectArray['menu_name'] . "', ";
+    $query .= 'position = ' . "'" . $subjectArray['position'] . "', ";
+    $query .= 'visible = ' . "'" . $subjectArray['visible'] . "' ";
+    $query .= 'WHERE id = ' . "'" . $subjectArray['id'] . "' ";
+    $query .= 'LIMIT 1';
+    $query_result = mysqli_query($db, $query);
+
+    return $query_result;
+}
+
 function select_all_pages()
 {
     global $db;
