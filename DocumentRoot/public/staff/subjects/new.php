@@ -13,15 +13,21 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if (isset($_GET['id'])) {
             redirect(WWW_ROOT . '/staff/subjects/index.php'); // This form is not meant to handle GET query strings
         } else {
+            $subject_set = select_all_subjects();
+            $subject_count = mysqli_num_rows($subject_set) + 1; // since this record will add one to total
+
+            mysqli_free_result($subject_set);
+
             break; // continue to form display
         }
 
     case 'POST':
-    // Process the values POSTed by the user via the form on this page
-        $menuName   = $_POST['menuName']    ?? '';
-        $position   = $_POST['position']    ?? '';
-        $visible    = $_POST['visible']     ?? '';
-        $result = insert_subject($menuName, $position, $visible);
+        // Process the values POSTed by the user via the form on this page
+        $subject = [];
+        $subject['menu_name']   = $_POST['menuName']    ?? '';
+        $subject['position']    = $_POST['position']    ?? '';
+        $subject['visible']     = $_POST['visible']     ?? '';
+        $result = insert_subject($subject);
         switch ($result) {
             case 1:
                 echo $result . '<br>';
@@ -59,6 +65,16 @@ include_once(SHARED_PATH . '/staff-header.php');
                 <dt>Position</dt>
                 <dd>
                     <select name="position">
+<?php
+
+for ($i = 1; $i <= $subject_count; ++$i) {
+    echo '<option value="' . $i . '"';
+    if ($i == $subject_count) {
+        echo ' selected';
+    }
+    echo '>' . $i . '</option>';
+}
+?>
                         <option value="1">1</option>
                     </select>
                 </dd>

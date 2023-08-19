@@ -34,15 +34,15 @@ function select_subject_by_id($id)
     }
 }
 
-function insert_subject($menuName, $position, $visible)
+function insert_subject($subjectArray)
 {
     global $db;
     $query = 'INSERT INTO subjects ';
     $query .= '(menu_name, position, visible) ';
     $query .= 'VALUES (';
-    $query .= "'" . $menuName . "',";
-    $query .= "'" . $position . "',";
-    $query .= "'" . $visible . "'";
+    $query .= "'" . $subjectArray['menu_name']  . "',";
+    $query .= "'" . $subjectArray['position']   . "',";
+    $query .= "'" . $subjectArray['visible']    . "'";
     $query .= ')';
     $query_result = mysqli_query($db, $query);
 
@@ -54,9 +54,9 @@ function update_subject($subjectArray)
     global $db;
     $query = 'UPDATE subjects ';
     $query .= 'SET menu_name = ' . "'" . $subjectArray['menu_name'] . "', ";
-    $query .= 'position = ' . "'" . $subjectArray['position'] . "', ";
-    $query .= 'visible = ' . "'" . $subjectArray['visible'] . "' ";
-    $query .= 'WHERE id = ' . "'" . $subjectArray['id'] . "' ";
+    $query .= 'position = ' . "'" . $subjectArray['position']   . "', ";
+    $query .= 'visible = '  . "'" . $subjectArray['visible']    . "' ";
+    $query .= 'WHERE id = ' . "'" . $subjectArray['id']         . "' ";
     $query .= 'LIMIT 1';
     $query_result = mysqli_query($db, $query);
 

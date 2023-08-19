@@ -15,6 +15,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
         } else {
             // Retreive the subject referenced by $_GET['id'] and display its values on form
             $subject = select_subject_by_id($id);
+            $subject_set = select_all_subjects();
+            $subject_count = mysqli_num_rows($subject_set);
+
+            mysqli_free_result($subject_set);
         }
 
         break; // continue to form display
@@ -58,7 +62,16 @@ include_once(SHARED_PATH . '/staff-header.php');
                 <dt>Position</dt>
                 <dd>
                     <select name="position">
-                        <option value="<?php echo htmlspecialchars($subject['position']); ?>"><?php echo htmlspecialchars($subject['position']); ?></option>
+<?php
+
+for ($i = 1; $i <= $subject_count; ++$i) {
+    echo '<option value="' . $i . '"';
+    if ($subject['position'] == $i) {
+        echo ' selected';
+    }
+    echo '>' . $i . '</option>';
+}
+?>
                     </select>
                 </dd>
             </dl>
