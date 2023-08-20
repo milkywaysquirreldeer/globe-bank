@@ -39,7 +39,7 @@ require_once(SHARED_PATH . '/staff-header.php');
                 <!-- <td><a class="action" href="<?php echo url_for('/staff/subjects/edit.php?id=' . htmlspecialchars(urlencode($subject['id']))); ?>">Edit</a></td> -->
                 <td><a class="action" href="<?php echo url_for('/staff/subjects/edit.php?id=' . htmlspecialchars(urlencode($subject['id']))); ?>">Edit</a>
                 </td>
-                <td><a class="action" href="<?php echo url_for('/staff/subjects/index.php'); ?>">Delete</a></td>
+                <td><a class="action" href="<?php echo url_for('/staff/subjects/delete.php?id=' . htmlspecialchars(urlencode($subject['id']))); ?>">Delete</a></td>
             </tr>
         <?php } ?>
 

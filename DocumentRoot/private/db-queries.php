@@ -34,6 +34,21 @@ function select_subject_by_id($id)
     }
 }
 
+function delete_subject_by_id($id)
+{
+    global $db;
+    $query = 'DELETE FROM subjects ';
+    $query .= "WHERE id='" . $id . "' ";
+    $query .= 'LIMIT 1';
+
+    try {
+        $query_result = mysqli_query($db, $query);
+        return $query_result;
+    } catch(mysqli_sql_exception $e) {
+        exit('SQL Error while deleting Subject #' . htmlspecialchars($id));
+    }
+}
+
 function insert_subject($subjectArray)
 {
     global $db;
