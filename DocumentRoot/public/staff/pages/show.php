@@ -1,16 +1,44 @@
 <?php
 
+// pages/show.php
 require_once('../../../private/initialize.php');
+require_once(PRIVATE_PATH . '/db-queries.php');
 $pageTitle = 'Show Page';
 require_once(SHARED_PATH . '/staff-header.php');
 
-$idFrom_Get = $_GET['id'] ?? '1';
+if (!isset($_GET['id'])) {
+    redirect(WWW_ROOT . '/staff/pages/index.php');
+} else {
+    $idFrom_Get = $_GET['id'];
+}
+
+$page = selectPageById($idFrom_Get);
+$subject = selectSubjectById($page['subject_id']);
+$subjectName = $subject['menu_name'];
 ?>
 
 <div id="content">
     <a class="back-link" href="<?php echo urlFor('/staff/pages/index.php'); ?>">&laquo; Return</a><br>
     <div class="page show">
-        <?php echo 'The page id value from $_GET was ' . htmlspecialchars($idFrom_Get) . '.'; ?>
+        <h1>Page: <?php echo htmlspecialchars($page['menu_name']); ?></h1>
+    </div>
+    <div class="attributes">
+        <dl>
+            <dt>Menu Name</dt>
+            <dd><?php echo htmlspecialchars($page['menu_name']);?></dd>
+        </dl>
+        <dl>
+            <dt>Subject</dt>
+            <dd><?php echo htmlspecialchars($subjectName);?></dd>
+        </dl>
+        <dl>
+            <dt>Position</dt>
+            <dd><?php echo htmlspecialchars($page['position']);?></dd>
+        </dl>
+        <dl>
+            <dt>Visible</dt>
+            <dd><?php echo $page['visible'] == 1 ? 'Yes' : 'No';?></dd>
+        </dl>
     </div>
 </div>
 

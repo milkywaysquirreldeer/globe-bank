@@ -28,7 +28,6 @@ function selectSubjectById($id)
 
         mysqli_free_result($queryResult);
         return $subject; // returns an assoc. array
-
     } catch(mysqli_sql_exception $e) {
         exit('SQL Error while retreiving Subject #' . htmlspecialchars($id));
     }
@@ -89,5 +88,22 @@ function selectAllPages()
         return $queryResult; // returns a mysqli query result
     } catch(mysqli_sql_exception $e) {
         exit('SQL Error while retreiving list of Pages');
+    }
+}
+
+function selectPageById($id)
+{
+    global $db;
+    $query = 'SELECT * FROM pages ';
+    $query .= "WHERE id='" . $id . "'";
+
+    try {
+        $queryResult = mysqli_query($db, $query);
+        $page = mysqli_fetch_assoc($queryResult);
+
+        mysqli_free_result($queryResult);
+        return $page;
+    } catch(mysqli_sql_exception $e) {
+        exit('SQL Error while retreiving Page #' . htmlspecialchars($id));
     }
 }

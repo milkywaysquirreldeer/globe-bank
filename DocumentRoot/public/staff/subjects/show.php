@@ -3,12 +3,15 @@
 // subjects/show.php
 require_once('../../../private/initialize.php');
 require_once(PRIVATE_PATH . '/db-queries.php');
-
 $pageTitle ='Show Subject';
-
 require_once(SHARED_PATH . '/staff-header.php');
 
-$idFrom_Get = $_GET['id'] ?? '1';
+if (!isset($_GET['id'])) {
+    redirect(WWW_ROOT . '/staff/subjects/index.php');
+} else {
+    $idFrom_Get = $_GET['id'];
+}
+
 $subject = selectSubjectById($idFrom_Get);
 ?>
 
