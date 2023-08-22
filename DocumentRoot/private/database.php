@@ -3,7 +3,7 @@
 //database.php - functions related to globe_bank db
 require_once('db-credentials.php');
 
-function db_connect()
+function dbConnect()
 {
     try {
         $connection = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
@@ -14,7 +14,7 @@ function db_connect()
     }
 }
 
-function db_disconnect($connection)
+function dbDisconnect($connection)
 {
     if (isset($connection)) {
         mysqli_close($connection);

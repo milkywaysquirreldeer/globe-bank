@@ -2,31 +2,31 @@
 
 // db-queries.php - Store commonly used queries
 
-function select_all_subjects()
+function selectAllSubjects()
 {
     global $db;
     $query  = 'SELECT * FROM subjects ';
     $query .= 'ORDER BY position ASC';
 
     try {
-        $query_result = mysqli_query($db, $query);
-        return $query_result; //returns a mysqli query result
+        $queryResult = mysqli_query($db, $query);
+        return $queryResult; //returns a mysqli query result
     } catch(mysqli_sql_exception $e) {
         exit('SQL Error while retreiving list of Subjects');
     }
 }
 
-function select_subject_by_id($id)
+function selectSubjectById($id)
 {
     global $db;
     $query = 'SELECT * FROM subjects ';
     $query .= "WHERE id='" . $id . "'";
 
     try {
-        $query_result = mysqli_query($db, $query);
-        $subject = mysqli_fetch_assoc($query_result);
+        $queryResult = mysqli_query($db, $query);
+        $subject = mysqli_fetch_assoc($queryResult);
 
-        mysqli_free_result($query_result);
+        mysqli_free_result($queryResult);
         return $subject; // returns an assoc. array
 
     } catch(mysqli_sql_exception $e) {
@@ -34,7 +34,7 @@ function select_subject_by_id($id)
     }
 }
 
-function delete_subject_by_id($id)
+function deleteSubjectById($id)
 {
     global $db;
     $query = 'DELETE FROM subjects ';
@@ -42,14 +42,14 @@ function delete_subject_by_id($id)
     $query .= 'LIMIT 1';
 
     try {
-        $query_result = mysqli_query($db, $query);
-        return $query_result;
+        $queryResult = mysqli_query($db, $query);
+        return $queryResult;
     } catch(mysqli_sql_exception $e) {
         exit('SQL Error while deleting Subject #' . htmlspecialchars($id));
     }
 }
 
-function insert_subject($subjectArray)
+function insertSubject($subjectArray)
 {
     global $db;
     $query = 'INSERT INTO subjects ';
@@ -59,12 +59,12 @@ function insert_subject($subjectArray)
     $query .= "'" . $subjectArray['position']   . "',";
     $query .= "'" . $subjectArray['visible']    . "'";
     $query .= ')';
-    $query_result = mysqli_query($db, $query);
+    $queryResult = mysqli_query($db, $query);
 
-    return $query_result;
+    return $queryResult;
 }
 
-function update_subject($subjectArray)
+function updateSubject($subjectArray)
 {
     global $db;
     $query = 'UPDATE subjects ';
@@ -73,20 +73,20 @@ function update_subject($subjectArray)
     $query .= 'visible = '  . "'" . $subjectArray['visible']    . "' ";
     $query .= 'WHERE id = ' . "'" . $subjectArray['id']         . "' ";
     $query .= 'LIMIT 1';
-    $query_result = mysqli_query($db, $query);
+    $queryResult = mysqli_query($db, $query);
 
-    return $query_result;
+    return $queryResult;
 }
 
-function select_all_pages()
+function selectAllPages()
 {
     global $db;
     $query  = 'SELECT * FROM pages ';
     $query .= 'ORDER BY subject_id ASC, position ASC';
 
     try {
-        $query_result = mysqli_query($db, $query);
-        return $query_result; // returns a mysqli query result
+        $queryResult = mysqli_query($db, $query);
+        return $queryResult; // returns a mysqli query result
     } catch(mysqli_sql_exception $e) {
         exit('SQL Error while retreiving list of Pages');
     }

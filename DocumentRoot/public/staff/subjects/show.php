@@ -9,11 +9,11 @@ $pageTitle ='Show Subject';
 require_once(SHARED_PATH . '/staff-header.php');
 
 $idFrom_Get = $_GET['id'] ?? '1';
-$subject = select_subject_by_id($idFrom_Get);
+$subject = selectSubjectById($idFrom_Get);
 ?>
 
 <div id="content">
-    <a class="back-link" href="<?php echo url_for('/staff/subjects/index.php'); ?>">&laquo; Return</a><br>
+    <a class="back-link" href="<?php echo urlFor('/staff/subjects/index.php'); ?>">&laquo; Return</a><br>
     <div class="subject show">
         <h1>Subject: <?php echo htmlspecialchars($subject['menu_name']); ?></h1>
     </div>

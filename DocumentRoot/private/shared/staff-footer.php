@@ -6,4 +6,4 @@
 
 <?php 
 
-db_disconnect($db);
+dbDisconnect($db);

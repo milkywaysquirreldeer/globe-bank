@@ -15,10 +15,10 @@ $idFrom_Get = $_GET['id'];
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    delete_subject_by_id($idFrom_Get);
+    deleteSubjectById($idFrom_Get);
     redirect(WWW_ROOT . '/staff/subjects/index.php');
 } else { // page is loading in response to a GET request
-    $subject = select_subject_by_id($idFrom_Get); // use to look up info for confirmation screen
+    $subject = selectSubjectById($idFrom_Get); // use to look up info for confirmation screen
 }
 ?>
 

@@ -13,10 +13,10 @@ switch ($_SERVER['REQUEST_METHOD']) {
         if (isset($_GET['id'])) {
             redirect(WWW_ROOT . '/staff/subjects/index.php'); // This form is not meant to handle GET query strings
         } else {
-            $subject_set = select_all_subjects();
-            $subject_count = mysqli_num_rows($subject_set) + 1; // since this record will add one to total
+            $subjectSet = selectAllSubjects();
+            $subjectCount = mysqli_num_rows($subjectSet) + 1; // since this record will add one to total
 
-            mysqli_free_result($subject_set);
+            mysqli_free_result($subjectSet);
 
             break; // continue to form display
         }
@@ -27,17 +27,17 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $subject['menu_name']   = $_POST['menuName']    ?? '';
         $subject['position']    = $_POST['position']    ?? '';
         $subject['visible']     = $_POST['visible']     ?? '';
-        $result = insert_subject($subject);
+        $result = insertSubject($subject);
         switch ($result) {
             case 1:
                 echo $result . '<br>';
-                $new_id = mysqli_insert_id($db);
-                redirect(WWW_ROOT . '/staff/subjects/show.php?id=' . $new_id);
+                $newId = mysqli_insert_id($db);
+                redirect(WWW_ROOT . '/staff/subjects/show.php?id=' . $newId);
                 break;
             case 0: // INSERT failed
                 echo $result . '<br>';
                 echo 'Error Creating record<br>';
-                db_disconnect($db);
+                dbDisconnect($db);
                 exit;
         }
 
@@ -67,9 +67,9 @@ include_once(SHARED_PATH . '/staff-header.php');
                     <select name="position">
 <?php
 
-for ($i = 1; $i <= $subject_count; ++$i) {
+for ($i = 1; $i <= $subjectCount; ++$i) {
     echo '<option value="' . $i . '"';
-    if ($i == $subject_count) {
+    if ($i == $subjectCount) {
         echo ' selected';
     }
     echo '>' . $i . '</option>';

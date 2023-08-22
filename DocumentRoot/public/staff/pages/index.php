@@ -4,7 +4,7 @@
 require_once('../../../private/initialize.php');
 require_once(PRIVATE_PATH . '/db-queries.php');
 
-$page_set = select_all_pages();
+$pageSet = selectAllPages();
 $pageTitle = 'Pages Menu';
 
 require_once(SHARED_PATH . '/staff-header.php');
@@ -30,23 +30,23 @@ require_once(SHARED_PATH . '/staff-header.php');
                 <th>&nbsp;</th>
             </tr>
 
-        <?php while ($page = mysqli_fetch_assoc($page_set)) { ?>
+        <?php while ($page = mysqli_fetch_assoc($pageSet)) { ?>
             <tr>
                 <td><?php echo htmlspecialchars($page['id']); ?></td>
                 <td><?php echo htmlspecialchars($page['subject_id']); ?></td>
                 <td><?php echo htmlspecialchars($page['position']); ?></td>
                 <td><?php echo $page['visible'] == '1' ? 'Y' : 'N'; ?></td>
                 <td><?php echo htmlspecialchars($page['menu_name']); ?></td>
-                <td><a class="action" href="<?php echo url_for(
+                <td><a class="action" href="<?php echo urlFor(
                     '/staff/pages/show.php?id=' . htmlspecialchars(urlencode($page['id']))
                 ); ?>">View</a>
                 </td>
-                <td><a class="action" href="<?php echo url_for('/staff/pages/edit.php?id=' . htmlspecialchars(urlencode($page['id'])) .
+                <td><a class="action" href="<?php echo urlFor('/staff/pages/edit.php?id=' . htmlspecialchars(urlencode($page['id'])) .
                                     '&menuName='    . htmlspecialchars(urlencode($page['menu_name'])) .
                                     '&position='    . htmlspecialchars(urlencode($page['position']))) .
                                     '&visible='     . htmlspecialchars(urlencode($page['visible'])); ?>">Edit</a>
                 </td>
-                <td><a class="action" href="<?php echo url_for('/staff/pages/index.php') ?>">Delete</a></td>
+                <td><a class="action" href="<?php echo urlFor('/staff/pages/index.php') ?>">Delete</a></td>
             </tr> 
         <?php } ?>
 
@@ -55,6 +55,6 @@ require_once(SHARED_PATH . '/staff-header.php');
 </div>
 
 <?php
-mysqli_free_result($page_set);
+mysqli_free_result($pageSet);
 require_once(SHARED_PATH . '/staff-footer.php');
 ?>

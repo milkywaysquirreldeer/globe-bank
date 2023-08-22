@@ -14,11 +14,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
             redirect(WWW_ROOT . '/staff/subjects/index.php');
         } else {
             // Retreive the subject referenced by $_GET['id'] and display its values on form
-            $subject = select_subject_by_id($id);
-            $subject_set = select_all_subjects();
-            $subject_count = mysqli_num_rows($subject_set);
+            $subject = selectSubjectById($id);
+            $subjectSet = selectAllSubjects();
+            $subjectCount = mysqli_num_rows($subjectSet);
 
-            mysqli_free_result($subject_set);
+            mysqli_free_result($subjectSet);
         }
 
         break; // continue to form display
@@ -30,8 +30,8 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $subject['menu_name']   = $_POST['menuName']    ?? '';
         $subject['position']    = $_POST['position']    ?? '';
         $subject['visible']     = $_POST['visible']     ?? '';
-        $result = update_subject($subject);
-        db_disconnect($db);
+        $result = updateSubject($subject);
+        dbDisconnect($db);
 
         switch ($result) {
             case 1:
@@ -64,7 +64,7 @@ include_once(SHARED_PATH . '/staff-header.php');
                     <select name="position">
 <?php
 
-for ($i = 1; $i <= $subject_count; ++$i) {
+for ($i = 1; $i <= $subjectCount; ++$i) {
     echo '<option value="' . $i . '"';
     if ($subject['position'] == $i) {
         echo ' selected';

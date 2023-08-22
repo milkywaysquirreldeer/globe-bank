@@ -8,7 +8,7 @@ $idFrom_Get = $_GET['id'] ?? '1';
 ?>
 
 <div id="content">
-    <a class="back-link" href="<?php echo url_for('/staff/pages/index.php'); ?>">&laquo; Return</a><br>
+    <a class="back-link" href="<?php echo urlFor('/staff/pages/index.php'); ?>">&laquo; Return</a><br>
     <div class="page show">
         <?php echo 'The page id value from $_GET was ' . htmlspecialchars($idFrom_Get) . '.'; ?>
     </div>
