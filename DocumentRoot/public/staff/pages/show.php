@@ -39,6 +39,10 @@ $subjectName = $subject['menu_name'];
             <dt>Visible</dt>
             <dd><?php echo $page['visible'] == 1 ? 'Yes' : 'No';?></dd>
         </dl>
+        <dl>
+            <dt>Content</dt>
+            <dd><?php echo htmlspecialchars($page['content'] ?? '');?></dd>
+        </dl>
     </div>
 </div>
 
