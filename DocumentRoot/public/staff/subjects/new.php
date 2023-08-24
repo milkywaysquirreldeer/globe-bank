@@ -3,7 +3,7 @@
 require_once('../../../private/initialize.php');
 require_once(PRIVATE_PATH . '/db-queries.php');
 
-// new.php - Staff form to create a new Subject
+// subjects/new.php - Staff form to create a new Subject
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET':
@@ -28,14 +28,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $subject['position']    = $_POST['position']    ?? '';
         $subject['visible']     = $_POST['visible']     ?? '';
         $result = insertSubject($subject);
+
         switch ($result) {
             case 1:
-                echo $result . '<br>';
                 $newId = mysqli_insert_id($db);
                 redirect(WWW_ROOT . '/staff/subjects/show.php?id=' . $newId);
                 break;
             case 0: // INSERT failed
-                echo $result . '<br>';
                 echo 'Error Creating record<br>';
                 dbDisconnect($db);
                 exit;
