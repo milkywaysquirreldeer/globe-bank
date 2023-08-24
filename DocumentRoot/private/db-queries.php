@@ -107,3 +107,19 @@ function selectPageById($id)
         exit('SQL Error while retreiving Page #' . htmlspecialchars($id));
     }
 }
+
+function insertPage($pageArray)
+{
+    global $db;
+    $query = 'INSERT INTO pages ';
+    $query .= '(subject_id, menu_name, position, visible, content) ';
+    $query .= 'VALUES (';
+    $query .= "'" . $pageArray['subject_id'] . "',";
+    $query .= "'" . $pageArray['menu_name'] . "',";
+    $query .= "'" . $pageArray['position'] . "',";
+    $query .= "'" . $pageArray['visible'] . "',";
+    $query .= "'" . $pageArray['content'] . "'";
+    $query .= ')';
+    $queryResult = mysqli_query($db, $query);
+    return $queryResult;
+}
