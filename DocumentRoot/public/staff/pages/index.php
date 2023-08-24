@@ -21,7 +21,7 @@ require_once(SHARED_PATH . '/staff-header.php');
         <table class="list">
             <tr>
                 <th>ID</th>
-                <th>Subject ID</th>
+                <th>Subject</th>
                 <th>Position</th>
                 <th>Visible</th>
                 <th>Name</th>
@@ -33,7 +33,10 @@ require_once(SHARED_PATH . '/staff-header.php');
         <?php while ($page = mysqli_fetch_assoc($pageSet)) { ?>
             <tr>
                 <td><?php echo htmlspecialchars($page['id']); ?></td>
-                <td><?php echo htmlspecialchars($page['subject_id']); ?></td>
+                <td><?php
+                        $subject = selectSubjectById($page['subject_id']);
+                        echo htmlspecialchars($subject['menu_name']);
+                    ?></td>
                 <td><?php echo htmlspecialchars($page['position']); ?></td>
                 <td><?php echo $page['visible'] == '1' ? 'Y' : 'N'; ?></td>
                 <td><?php echo htmlspecialchars($page['menu_name']); ?></td>
