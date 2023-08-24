@@ -75,7 +75,6 @@ for ($i = 1; $i <= $subjectCount; ++$i) {
     echo '>' . $i . '</option>';
 }
 ?>
-                        <option value="1">1</option>
                     </select>
                 </dd>
             </dl>
