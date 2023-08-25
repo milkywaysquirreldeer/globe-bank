@@ -108,6 +108,21 @@ function selectPageById($id)
     }
 }
 
+function deletePageById($id)
+{
+    global $db;
+    $query = 'DELETE FROM pages ';
+    $query .= "WHERE id='" . $id . "' ";
+    $query .= 'LIMIT 1';
+
+    try {
+        $queryResult = mysqli_query($db, $query);
+        return $queryResult;
+    } catch(mysqli_sql_exception $e) {
+        exit('SQL Error while deleting Page #' . htmlspecialchars($id));
+    }
+}
+
 function insertPage($pageArray)
 {
     global $db;

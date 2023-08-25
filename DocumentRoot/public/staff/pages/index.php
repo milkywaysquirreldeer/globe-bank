@@ -45,7 +45,7 @@ require_once(SHARED_PATH . '/staff-header.php');
                 ); ?>">View</a>
                 </td>
                 <td><a class="action" href="<?php echo urlFor('/staff/pages/edit.php?id=' . htmlspecialchars(urlencode($page['id']))); ?>">Edit</a></td>
-                <td><a class="action" href="<?php echo urlFor('/staff/pages/index.php') ?>">Delete</a></td>
+                <td><a class="action" href="<?php echo urlFor('/staff/pages/delete.php?id=') . htmlspecialchars(urlencode($page['id'])); ?>">Delete</a></td>
             </tr> 
         <?php } ?>
 
