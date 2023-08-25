@@ -44,11 +44,7 @@ require_once(SHARED_PATH . '/staff-header.php');
                     '/staff/pages/show.php?id=' . htmlspecialchars(urlencode($page['id']))
                 ); ?>">View</a>
                 </td>
-                <td><a class="action" href="<?php echo urlFor('/staff/pages/edit.php?id=' . htmlspecialchars(urlencode($page['id'])) .
-                                    '&menuName='    . htmlspecialchars(urlencode($page['menu_name'])) .
-                                    '&position='    . htmlspecialchars(urlencode($page['position']))) .
-                                    '&visible='     . htmlspecialchars(urlencode($page['visible'])); ?>">Edit</a>
-                </td>
+                <td><a class="action" href="<?php echo urlFor('/staff/pages/edit.php?id=' . htmlspecialchars(urlencode($page['id']))); ?>">Edit</a></td>
                 <td><a class="action" href="<?php echo urlFor('/staff/pages/index.php') ?>">Delete</a></td>
             </tr> 
         <?php } ?>

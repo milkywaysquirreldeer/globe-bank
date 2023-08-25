@@ -123,3 +123,19 @@ function insertPage($pageArray)
     $queryResult = mysqli_query($db, $query);
     return $queryResult;
 }
+
+function updatePage($pageArray)
+{
+    global $db;
+    $query  = 'UPDATE pages ';
+    $query .= "SET subject_id ='"   . $pageArray['subject_id']  . "',";
+    $query .= "menu_name ='"        . $pageArray['menu_name']   . "',";
+    $query .= "position ='"         . $pageArray['position']    . "',";
+    $query .= "visible ='"          . $pageArray['visible']     . "',";
+    $query .= "content ='"          . $pageArray['content']     . "' ";
+    $query .= "WHERE id ='"         . $pageArray['id']          . "' ";
+    $query .= 'LIMIT 1';
+
+    $result = mysqli_query($db, $query);
+    return $result;
+}
