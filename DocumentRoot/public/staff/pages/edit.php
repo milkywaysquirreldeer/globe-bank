@@ -109,7 +109,9 @@ echo '>' . $i . '</option>';
             </dl>
             <dl>
                 <dt>Content</dt>
-                <dd><input type="text" name="content" value="<?php echo htmlspecialchars($page['content'] ?? ''); ?>"></dd>
+                <dd>
+                    <textarea cols="50" rows="8" name="content"><?php echo htmlspecialchars($page['content'] ?? ''); ?></textarea>
+                </dd>
             </dl>
             <div id="operations">
                 <input type="submit" value="Edit Page">
