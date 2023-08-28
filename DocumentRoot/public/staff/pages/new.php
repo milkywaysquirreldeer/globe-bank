@@ -1,7 +1,6 @@
 <?php
 
 require_once('../../../private/initialize.php');
-require_once(PRIVATE_PATH . '/db-queries.php');
 
 // pages/new.php - Staff form to create a new Page
 

@@ -1,7 +1,6 @@
 <?php
 
 require_once('../../../private/initialize.php');
-require_once(PRIVATE_PATH . '/db-queries.php');
 
 // pages/edit.php - Staff form to edit an existing Page
 $idFrom_Get = $_GET['id'];

@@ -2,7 +2,6 @@
 
 // subjects/index.php
 require_once('../../../private/initialize.php');
-require_once(PRIVATE_PATH . '/db-queries.php');
 
 $subjectSet = selectAllSubjects();
 $pageTitle = 'Subjects Menu';

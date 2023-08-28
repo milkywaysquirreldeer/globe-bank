@@ -2,7 +2,6 @@
 
 // subjects/show.php
 require_once('../../../private/initialize.php');
-require_once(PRIVATE_PATH . '/db-queries.php');
 $pageTitle ='Show Subject';
 require_once(SHARED_PATH . '/staff-header.php');
 

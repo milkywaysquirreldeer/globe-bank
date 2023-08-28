@@ -1,7 +1,6 @@
 <?php
 
 require_once('../../../private/initialize.php');
-require_once(PRIVATE_PATH . '/db-queries.php');
 
 // edit.php - Staff form to edit an existing Subject
 $id         = $_GET['id'];

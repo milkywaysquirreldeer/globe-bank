@@ -2,7 +2,6 @@
 
 // subjects/delete.php
 require_once('../../../private/initialize.php');
-require_once(PRIVATE_PATH . '/db-queries.php');
 $pageTitle = 'Delete Subject';
 include_once(SHARED_PATH . '/staff-header.php');
 
